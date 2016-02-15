@@ -55,11 +55,13 @@ SYSTEM_HOST_LDFLAGS=""
 LIB_SDL_NAME="Simple DirectMedia Layer"
 case "$HOST_SYSTEM" in
 	Darwin)
-		LIB_SDL_CFLAGS='-I/usr/local/include/SDL -D_GNU_SOURCE=1 -D_THREAD_SAFE'
-		LIB_SDL_LDFLAGS='-L/usr/local/lib -lSDLmain -lSDL -Wl,-framework,Cocoa'
+		LIB_SDL_CFLAGS='-I/usr/local/include/SDL2 -D_THREAD_SAFE'
+
+		LIB_SDL_LDFLAGS='-L/usr/local/lib -lSDL2'
+
 		LIB_SDL_VERSION=$(echo \
                       "SDL_MAJOR_VERSION.SDL_MINOR_VERSION.SDL_PATCHLEVEL" | \
-                      gcc -E -include SDL/SDL_version.h $LIB_SDL_CFLAGS - | \
+                      gcc -E -include SDL2/SDL_version.h $LIB_SDL_CFLAGS - | \
                       tail -1 | tr -d ' ')
 		;;
 	WINSCW|GCCE)
