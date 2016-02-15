@@ -96,8 +96,8 @@ LIB_SDL_mixer_VERSION=""
 LIB_SDL_image_NAME="SDL_image"
 case "$HOST_SYSTEM" in
 	Darwin)
-		LIB_SDL_image_CFLAGS='-I/usr/local/include/SDL -D_THREAD_SAFE'
-		LIB_SDL_image_LDFLAGS="-L/usr/local/lib -lSDL_image"
+		LIB_SDL_image_CFLAGS='-I/usr/local/include/SDL2 -D_THREAD_SAFE'
+		LIB_SDL_image_LDFLAGS="-L/usr/local/lib -lSDL2_image"
 	;;
 	ARMV5|WINSCW|GCCE)
 		LIB_SDL_image_CFLAGS="$LIB_SDL_CFLAGS"
@@ -111,7 +111,7 @@ case "$HOST_SYSTEM" in
 esac
 LIB_SDL_image_VERSION=$(echo \
 												"SDL_IMAGE_MAJOR_VERSION.SDL_IMAGE_MINOR_VERSION.SDL_IMAGE_PATCHLEVEL" | \
-												gcc -E -include SDL/SDL_image.h -I/usr/local/include/SDL -D_THREAD_SAFE - | \
+												gcc -E -include SDL2/SDL_image.h -I/usr/local/include/SDL2 -D_THREAD_SAFE - | \
 												tail -1 | tr -d ' ')
 
 
