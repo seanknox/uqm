@@ -109,7 +109,10 @@ case "$HOST_SYSTEM" in
 		LIB_SDL_image_LDFLAGS="$LIB_SDL_LDFLAGS -lSDL_image"
 		;;
 esac
-LIB_SDL_image_VERSION=""
+LIB_SDL_image_VERSION=$(echo \
+												"SDL_IMAGE_MAJOR_VERSION.SDL_IMAGE_MINOR_VERSION.SDL_IMAGE_PATCHLEVEL" | \
+												gcc -E -include SDL/SDL_image.h -I/usr/local/include/SDL -D_THREAD_SAFE - | \
+												tail -1 | tr -d ' ')
 
 
 ### OpenAL ###
