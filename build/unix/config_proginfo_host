@@ -55,8 +55,8 @@ SYSTEM_HOST_LDFLAGS=""
 LIB_SDL_NAME="Simple DirectMedia Layer"
 case "$HOST_SYSTEM" in
 	Darwin)
-		LIB_SDL_CFLAGS=''
-		LIB_SDL_LDFLAGS='-framework SDL -framework Cocoa -lobjc'
+		LIB_SDL_CFLAGS='-I/usr/local/include/SDL -D_GNU_SOURCE=1 -D_THREAD_SAFE'
+		LIB_SDL_LDFLAGS='-L/usr/local/lib -lSDLmain -lSDL -Wl,-framework,Cocoa'
 		LIB_SDL_VERSION=$(echo \
                       "SDL_MAJOR_VERSION.SDL_MINOR_VERSION.SDL_PATCHLEVEL" | \
                       gcc -E -include SDL/SDL_version.h $LIB_SDL_CFLAGS - | \
@@ -64,16 +64,16 @@ case "$HOST_SYSTEM" in
 		;;
 	WINSCW|GCCE)
 		LIB_SDL_CFLAGS='-I$BUILD_EPOCROOT/epoc32/include/SDL'
-		LIB_SDL_LDFLAGS=''		
+		LIB_SDL_LDFLAGS=''
 		LIB_SDL_VERSION='1.2.13'
 		LIB_SDL_DETECT="true"
 		;;
 	ARMV5)
 		LIB_SDL_CFLAGS='-J$BUILD_EPOCROOT/epoc32/include/SDL'
-		LIB_SDL_LDFLAGS=''		
+		LIB_SDL_LDFLAGS=''
 		LIB_SDL_VERSION='1.2.13'
 		LIB_SDL_DETECT="true"
-		;;		
+		;;
 	*)
 		LIB_SDL_DETECT="have_command sdl-config"
 		LIB_SDL_CFLAGS='$(sdl-config --cflags)'
@@ -228,7 +228,7 @@ case "$HOST_SYSTEM" in
 		# Assumed values - please let me know if you can verify this.
 		LIB_tremor_CFLAGS=""
 		LIB_tremor_LDFLAGS="-framework Tremor"
-		;;		
+		;;
 	ARMV5|WINSCW|GCCE)
 		LIB_tremor_DETECT="true"
 		;;
@@ -301,7 +301,7 @@ case "$HOST_SYSTEM" in
 		;;
 	WINSCW|ARMV5|GCCE)
 		LIB_pthread_DETECT="true"
-		;;					
+		;;
 	*)
 		LIB_pthread_CFLAGS=""
 		LIB_pthread_LDFLAGS="-lpthread"
@@ -350,5 +350,3 @@ SYMBOL_wint_t_EXTRA="#include <wchar.h>"
 SYMBOL_iswgraph_EXTRA="#include <wctype.h>"
 
 SYMBOL_getopt_long_EXTRA="#include <getopt.h>"
-
-
