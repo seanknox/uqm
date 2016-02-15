@@ -467,7 +467,7 @@ typedef unsigned int wint_t;
 #ifdef __APPLE__
 	// SDL_image.h in a directory SDL_image under the include dir.
 #	define SDL_DIR SDL
-#	define SDL_IMAGE_DIR SDL_image
+#	define SDL_IMAGE_DIR SDL
 #else
 	// SDL_image.h directly under the include dir.
 #	undef SDL_DIR
@@ -546,4 +546,3 @@ typedef unsigned int wint_t;
 // "d:foo/bar" (without a slash after the drive letter) are to be rejected.
 
 #endif  /* _PORT_H */
-

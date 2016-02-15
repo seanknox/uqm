@@ -96,14 +96,14 @@ LIB_SDL_mixer_VERSION=""
 LIB_SDL_image_NAME="SDL_image"
 case "$HOST_SYSTEM" in
 	Darwin)
-		LIB_SDL_image_CFLAGS=''
-		LIB_SDL_image_LDFLAGS="-framework SDL_image"
+		LIB_SDL_image_CFLAGS='-I/usr/local/include/SDL -D_THREAD_SAFE'
+		LIB_SDL_image_LDFLAGS="-L/usr/local/lib -lSDL_image"
 	;;
 	ARMV5|WINSCW|GCCE)
 		LIB_SDL_image_CFLAGS="$LIB_SDL_CFLAGS"
 		LIB_SDL_image_LDFLAGS="$LIB_SDL_LDFLAGS"
 		LIB_SDL_image_DETECT="true"
-		;;	
+		;;
 	*)
 		LIB_SDL_image_CFLAGS="$LIB_SDL_CFLAGS"
 		LIB_SDL_image_LDFLAGS="$LIB_SDL_LDFLAGS -lSDL_image"
