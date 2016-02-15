@@ -1,2 +1,7 @@
 content/addons
 content/packages
+build.vars
+config.state
+config_unix.h
+obj/
+uqm-wrapper
